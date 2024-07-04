@@ -6,6 +6,7 @@ import Link from "next/link";
 
 const PokemonList = () => {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
+  const [loding, setLoding] = useState(true);
 
   useEffect(() => {
     const fetchPokemons = async () => {
@@ -13,12 +14,15 @@ const PokemonList = () => {
         const response = await fetch("/api/pokemons");
         const data = await response.json();
         setPokemons(data);
-        console.log(data);
+        setLoding(false);
       } catch {}
     };
     fetchPokemons();
   }, []);
 
+  if (loding) {
+    return <div>로딩...</div>;
+  }
   return (
     <div
       style={{
