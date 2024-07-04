@@ -2,6 +2,7 @@
 import { Krona_One } from "next/font/google";
 import React, { useEffect, useState } from "react";
 import { Pokemon } from "../_types/pokemons";
+import Link from "next/link";
 
 const PokemonDetail = ({ id }: { id: string }) => {
   const [pokemon, setPokemon] = useState<Pokemon>();
@@ -17,10 +18,6 @@ const PokemonDetail = ({ id }: { id: string }) => {
     fetchPokemon();
   }, []);
 
-  const handleBackButtonClick = () => {
-    //유즈라우터?
-    window.location.href = "http://localhost:3000";
-  };
   if (!pokemon) {
     return <div>로딩 ...</div>;
   }
@@ -81,13 +78,13 @@ const PokemonDetail = ({ id }: { id: string }) => {
       </main>
       <div className="flex justify-center items-center">
         {/* 링크 해보기 밑에  */}
-        <button
-          type="button"
-          onClick={handleBackButtonClick}
+
+        <Link
+          href={"/"}
           className=" mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
         >
           뒤로가기
-        </button>
+        </Link>
       </div>
     </div>
   );
